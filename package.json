@@ -1,0 +1,20 @@
+{
+  "name": "rollback-log-tg-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Telegram channel bot",
+  "type": "module",
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "check": "node --check src/index.js && node --check src/bot.js && node --check src/config/env.js && node --check src/handlers/commands.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.7",
+    "grammy": "^1.46.0"
+  }
+}
