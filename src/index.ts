@@ -1,12 +1,12 @@
 import { createBot } from './bot.js';
 import { loadConfig } from './config/env.js';
 
-async function main() {
+async function main(): Promise<void> {
   const bot = createBot(loadConfig());
 
   for (const signal of ['SIGINT', 'SIGTERM']) {
     process.once(signal, () => {
-      if (bot.isRunning()) bot.stop();
+      if (bot.isRunning()) void bot.stop();
     });
   }
 
@@ -15,7 +15,8 @@ async function main() {
   });
 }
 
-main().catch((error) => {
-  console.error('Не удалось запустить бота:', error.message);
+main().catch((error: unknown) => {
+  console.error('Не удалось запустить бота:',
+    error instanceof Error ? error.message : 'Неизвестная ошибка');
   process.exitCode = 1;
 });

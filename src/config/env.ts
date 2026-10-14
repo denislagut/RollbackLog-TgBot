@@ -1,6 +1,11 @@
 import 'dotenv/config';
 
-export function loadConfig() {
+export interface Config {
+  botToken: string;
+  channelId: string | undefined;
+}
+
+export function loadConfig(): Config {
   const botToken = process.env.BOT_TOKEN?.trim();
 
   if (!botToken) {
